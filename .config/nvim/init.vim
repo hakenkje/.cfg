@@ -16,7 +16,7 @@ set nojoinspaces
 set lazyredraw
 
 set colorcolumn=80
-set termguicolors
+" set termguicolors
 set number
 set relativenumber
 set cursorline
