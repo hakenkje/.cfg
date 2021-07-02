@@ -12,6 +12,7 @@ lspconfig.cssls.setup{
   capabilities = capabilities,
   on_attach=completion.on_attach
 }
+lspconfig.svelte.setup{}
 EOF
 
 imap <silent> <c-p> <Plug>(completion_trigger)

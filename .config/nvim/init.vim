@@ -147,6 +147,7 @@ Plug 'nelstrom/vim-visual-star-search'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'bfredl/nvim-miniyank'
+Plug 'gennaro-tedesco/nvim-peekup'
 Plug 'sjl/gundo.vim'
 Plug 'vimwiki/vimwiki'
 " Plug 'gregsexton/gitv'
@@ -156,10 +157,10 @@ Plug 'mcchrish/nnn.vim'
 
 " File type specific
 Plug 'mattn/emmet-vim', {
-  \ 'for': ['javascript', 'typescript', 'typescriptreact', 'html'] }
+  \ 'for': ['javascript', 'typescript', 'typescriptreact', 'html', 'svelte'] }
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'typescriptreact', 'css', 'scss', 'json', 'yaml', 'html'] }
+  \ 'for': ['javascript', 'typescript', 'typescriptreact', 'css', 'scss', 'json', 'yaml', 'html', 'svelte'] }
 Plug 'psf/black', { 'branch': 'master', 'for': 'python' }
 
 " LSP related
