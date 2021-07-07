@@ -152,7 +152,9 @@ Plug 'sjl/gundo.vim'
 Plug 'vimwiki/vimwiki'
 " Plug 'gregsexton/gitv'
 " Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
-Plug 'itchyny/lightline.vim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'hoob3rt/lualine.nvim'
+" Plug 'itchyny/lightline.vim'
 Plug 'mcchrish/nnn.vim'
 
 " File type specific
@@ -164,16 +166,22 @@ Plug 'prettier/vim-prettier', {
 Plug 'psf/black', { 'branch': 'master', 'for': 'python' }
 
 " LSP related
+Plug 'tami5/sql.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'tami5/sql.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-lua/completion-nvim'
 
+" Color schemes
+Plug 'folke/tokyonight.nvim'
+
 " Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
 call plug#end()
 
-colorscheme hkj256
+" colorscheme hkj256
+let g:tokyonight_style = "night"
+let g:tokyonight_transparent = 1
+colorscheme tokyonight

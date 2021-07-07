@@ -3,13 +3,9 @@ local telescope = require'telescope'
 telescope.setup{
   defaults = {
     layout_strategy = "horizontal",
-    layout_defaults = {
-      horizontal = {
-        mirror = false,
-      },
-      vertical = {
-        mirror = true,
-      },
+    sorting_strategy = "ascending",
+    layout_config = {
+      prompt_position = "top"
     },
   },
 }
