@@ -147,7 +147,7 @@ Plug 'nelstrom/vim-visual-star-search'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'bfredl/nvim-miniyank'
-Plug 'gennaro-tedesco/nvim-peekup'
+" Plug 'gennaro-tedesco/nvim-peekup'
 Plug 'sjl/gundo.vim'
 Plug 'vimwiki/vimwiki'
 " Plug 'gregsexton/gitv'
@@ -171,7 +171,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-frecency.nvim'
+" Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-lua/completion-nvim'
 
@@ -182,6 +182,6 @@ Plug 'folke/tokyonight.nvim'
 call plug#end()
 
 " colorscheme hkj256
-let g:tokyonight_style = "night"
+" let g:tokyonight_style = "night"
 let g:tokyonight_transparent = 1
 colorscheme tokyonight
