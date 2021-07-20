@@ -1,0 +1,32 @@
+[user]
+    name = Håken Jevne
+    email = hakenkje@gmail.com
+
+[alias]
+    co = checkout
+    br = branch
+    ci = commit
+    st = status
+    reset-hard = reset --hard HEAD
+    lg = log --graph --pretty=format:'%Cred%h%Creset %Cgreen%cr%Creset %Cblue%an%Creset%C(yellow)%d%Creset %s'
+    gr = log --graph --simplify-by-decoration --pretty=format:'%Cgreen%ci%Creset  %d' --all
+
+[diff]
+    color = auto
+    tool = vimdiff
+
+[status]
+    color = auto
+    submoduleSummary = true
+
+[web]
+    browser = open
+[credential]
+    helper = osxkeychain
+[push]
+    default = simple
+    followTags = true
+[difftool]
+    prompt = false
+[merge]
+    ff = only
