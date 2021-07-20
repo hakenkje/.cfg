@@ -1,21 +1,45 @@
 lua << EOF
 local lspconfig = require'lspconfig'
-local completion = require("completion")
+-- local completion = require("completion")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-lspconfig.pyright.setup{on_attach=completion.on_attach}
-lspconfig.tsserver.setup{on_attach=completion.on_attach}
-lspconfig.jsonls.setup{on_attach=completion.on_attach}
-lspconfig.cssls.setup{
-  capabilities = capabilities,
-  on_attach=completion.on_attach
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
 }
-lspconfig.svelte.setup{}
+
+-- lspconfig.pyright.setup{on_attach=completion.on_attach}
+-- lspconfig.tsserver.setup{on_attach=completion.on_attach}
+-- lspconfig.jsonls.setup{on_attach=completion.on_attach}
+-- lspconfig.cssls.setup{
+--   capabilities = capabilities,
+--   on_attach=completion.on_attach
+-- }
+-- lspconfig.svelte.setup{}
+
+-- lspconfig.pyright.setup{}
+-- lspconfig.tsserver.setup{}
+-- lspconfig.jsonls.setup{}
+-- lspconfig.cssls.setup{}
+-- lspconfig.svelte.setup{}
+
+-- Enable the following language servers
+local servers = { 'pyright', 'tsserver', 'jsonls', 'cssls', 'svelte' }
+for _, lsp in ipairs(servers) do
+  require('lspconfig')[lsp].setup {
+    -- You will probably want to add a custom on_attach here to locally map keybinds to buffers with an active client
+    -- on_attach = on_attach,
+    capabilities = capabilities,
+  }
+end
+
 EOF
 
-imap <silent> <c-p> <Plug>(completion_trigger)
+" imap <silent> <c-p> <Plug>(completion_trigger)
 
 nnoremap <silent> gD          <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gd          <cmd>lua vim.lsp.buf.definition()<CR>
@@ -34,7 +58,8 @@ nnoremap <silent> ]d          <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 " nnoremap <silent> <space>q    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
 
 " Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
+" set completeopt=menuone,noinsert,noselect
 
-" Avoid showing message extra message when using completion
-set shortmess+=c
+" Avoid showing extra message when using completion
+" set shortmess+=c
+

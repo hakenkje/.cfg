@@ -9,6 +9,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+" set autoindent
 set nowrap
 set timeout timeoutlen=500 ttimeoutlen=500
 set pastetoggle=<F2>
@@ -39,6 +40,8 @@ set wildignore+=*.swp,*.un~,*.o,*.so
 set wildignore+=output,build,dist,*.egg-info,tags,node_modules,tmp,bower_components
 
 set mouse=a  " Enable mouse scrolling
+
+au TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=150, on_visual=true}
 
 " Use a dedicated python3 venv for neovim (contains pynvim, neovim and black)
 let g:python3_host_prog = expand('~/.nvim-venv/bin/python3')
@@ -138,32 +141,24 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 
-" Plug 'tommcdo/vim-fubitive'
-" Plug 'vim-scripts/bufkill.vim'
 " Plug 'liuchengxu/vista.vim'
 Plug 'tmhedberg/matchit'
-Plug 'Raimondi/delimitMate'
+Plug 'windwp/nvim-autopairs'
 Plug 'nelstrom/vim-visual-star-search'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'bfredl/nvim-miniyank'
-" Plug 'gennaro-tedesco/nvim-peekup'
 Plug 'sjl/gundo.vim'
 Plug 'vimwiki/vimwiki'
 " Plug 'gregsexton/gitv'
-" Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'hoob3rt/lualine.nvim'
-" Plug 'itchyny/lightline.vim'
 Plug 'mcchrish/nnn.vim'
 
 " File type specific
 Plug 'mattn/emmet-vim', {
   \ 'for': ['javascript', 'typescript', 'typescriptreact', 'html', 'svelte'] }
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'typescriptreact', 'css', 'scss', 'json', 'yaml', 'html', 'svelte'] }
-Plug 'psf/black', { 'branch': 'master', 'for': 'python' }
+Plug 'mhartington/formatter.nvim'
 
 " LSP related
 Plug 'tami5/sql.nvim'
@@ -173,15 +168,41 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 " Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-lua/completion-nvim'
+
+Plug 'hrsh7th/nvim-compe'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'rafamadriz/friendly-snippets'
 
 " Color schemes
 Plug 'folke/tokyonight.nvim'
+Plug 'projekt0n/github-nvim-theme'
+Plug 'monsonjeremy/onedark.nvim'
+Plug 'Mofiqul/vscode.nvim'
+Plug 'arcticicestudio/nord-vim'
 
-" Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
+" Plug 'lukas-reineke/indent-blankline.nvim'
+
+
 call plug#end()
 
 " colorscheme hkj256
-" let g:tokyonight_style = "night"
-let g:tokyonight_transparent = 1
-colorscheme tokyonight
+
+" let g:tokyonight_style = "dark"
+" let g:tokyonight_transparent = 1
+" colorscheme tokyonight
+
+" lua << EOF
+" require('github-theme').setup({
+"   themeStyle = "dark",
+"   transparent = true,
+" })
+" EOF
+
+" let g:onedark_transparent = 1
+" colorscheme onedark
+
+" let g:vscode_style = "dark"
+colorscheme vscode
+
+colorscheme nord
+" hi Normal guibg=NONE ctermbg=NONE
