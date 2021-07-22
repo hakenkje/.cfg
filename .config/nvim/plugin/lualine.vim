@@ -3,7 +3,7 @@ require('lualine').setup {
   options = {
     section_separators = '',
     component_separators = '',
-    -- theme = 'nord',
+    theme = 'nord',
   }
 }
 EOF

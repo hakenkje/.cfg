@@ -178,7 +178,8 @@ Plug 'folke/tokyonight.nvim'
 Plug 'projekt0n/github-nvim-theme'
 Plug 'monsonjeremy/onedark.nvim'
 Plug 'Mofiqul/vscode.nvim'
-Plug 'arcticicestudio/nord-vim'
+" Plug 'arcticicestudio/nord-vim'
+Plug 'shaunsingh/nord.nvim'
 
 " Plug 'lukas-reineke/indent-blankline.nvim'
 
@@ -202,7 +203,9 @@ call plug#end()
 " colorscheme onedark
 
 " let g:vscode_style = "dark"
-colorscheme vscode
+" colorscheme vscode
 
+let g:nord_contrast = v:true
+let g:nord_disable_background = v:false
 colorscheme nord
 " hi Normal guibg=NONE ctermbg=NONE
