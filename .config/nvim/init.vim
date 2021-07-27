@@ -138,8 +138,11 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
+
+Plug 'b3nj5m1n/kommentary'
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
 " Plug 'liuchengxu/vista.vim'
 Plug 'tmhedberg/matchit'

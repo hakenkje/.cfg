@@ -28,10 +28,20 @@ require('formatter').setup({
     -- },
     python = {
       -- black
-      function() 
+      function()
         return {
-          exe = "black", 
-          args = {"-q", "-"}, 
+          exe = "black",
+          args = {"-q", "-"},
+          stdin = true
+        }
+      end
+    },
+    rust = {
+      -- Rustfmt
+      function()
+        return {
+          exe = "rustfmt",
+          args = {"--emit=stdout"},
           stdin = true
         }
       end
@@ -42,5 +52,5 @@ EOF
 
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.ts,*.jsx,*.tsx,*.json,*.lua,*.py FormatWrite
+  autocmd BufWritePost *.js,*.ts,*.jsx,*.tsx,*.json,*.lua,*.py,*.rs FormatWrite
 augroup END

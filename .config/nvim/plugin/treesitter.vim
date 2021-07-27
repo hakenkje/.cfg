@@ -7,5 +7,9 @@ require'nvim-treesitter.configs'.setup {
         enable = true,
         disable = {"python"}
     },
+    context_commentstring = {
+        enable = true,
+        enable_autocmd = false,
+    },
 }
 EOF

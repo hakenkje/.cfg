@@ -28,7 +28,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 -- lspconfig.svelte.setup{}
 
 -- Enable the following language servers
-local servers = { 'pyright', 'tsserver', 'jsonls', 'cssls', 'svelte' }
+local servers = { 'pyright', 'tsserver', 'jsonls', 'cssls', 'svelte', 'rust_analyzer' }
 for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup {
     -- You will probably want to add a custom on_attach here to locally map keybinds to buffers with an active client
