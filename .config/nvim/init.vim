@@ -11,7 +11,7 @@ set shiftwidth=4
 set expandtab
 " set autoindent
 set nowrap
-set timeout timeoutlen=500 ttimeoutlen=500
+set timeout timeoutlen=500 ttimeoutlen=5
 set pastetoggle=<F2>
 set nojoinspaces
 set lazyredraw
@@ -84,7 +84,7 @@ nmap <leader>T :tabnew<CR>
 nmap <leader>W :tabclose<CR>
 noremap <Leader>w :clo<CR>
 noremap <Leader>q :bd<CR>
-map <S-r> <C-w>r
+" map <S-r> <C-w>r
 
 " Fix for unimpaired commands
 nmap å [
@@ -145,6 +145,7 @@ Plug 'b3nj5m1n/kommentary'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
 " Plug 'liuchengxu/vista.vim'
+Plug 'simrat39/symbols-outline.nvim'
 Plug 'tmhedberg/matchit'
 Plug 'windwp/nvim-autopairs'
 Plug 'nelstrom/vim-visual-star-search'
@@ -209,6 +210,6 @@ call plug#end()
 " colorscheme vscode
 
 let g:nord_contrast = v:true
-let g:nord_disable_background = v:false
+let g:nord_disable_background = v:true
 colorscheme nord
 " hi Normal guibg=NONE ctermbg=NONE
