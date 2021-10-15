@@ -16,6 +16,7 @@ require('formatter').setup({
     typescript = { prettier },
     json = { prettier },
     typescriptreact = { prettier },
+    svelte = { prettier },
     -- lua = {
     --   -- luafmt
     --   function()
@@ -52,5 +53,5 @@ EOF
 
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.ts,*.jsx,*.tsx,*.json,*.lua,*.py,*.rs FormatWrite
+  autocmd BufWritePost *.js,*.ts,*.jsx,*.tsx,*.json,*.lua,*.py,*.rs,*.svelte FormatWrite
 augroup END
