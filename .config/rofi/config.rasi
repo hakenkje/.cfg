@@ -1,0 +1,14 @@
+configuration {
+    theme: "nord";
+
+    show-icons: true;
+
+    /* mode: "run"; */
+    modi: "window,run,calc,ssh";
+    combi-modi: "run,calc";
+    terminal: "kitty";
+    ssh-client: "ssh";
+    ssh-command: "{terminal} -e \"{ssh-client} {host}\"";
+    run-command: "{cmd}";
+    run-shell-command: "{terminal} -e {cmd}";
+}
