@@ -1,0 +1,2 @@
+bind status a !?git commit --amend
+bind status A !?git commit --amend --no-edit
