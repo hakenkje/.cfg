@@ -53,5 +53,5 @@ EOF
 
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.ts,*.jsx,*.tsx,*.json,*.lua,*.py,*.rs,*.svelte FormatWrite
+  autocmd BufWritePost *.js,*.ts,*.jsx,*.tsx,*.json,*.py,*.rs,*.svelte FormatWrite
 augroup END

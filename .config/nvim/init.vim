@@ -138,23 +138,23 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
-" Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
+Plug 'sindrets/diffview.nvim'
 
 Plug 'b3nj5m1n/kommentary'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
-" Plug 'liuchengxu/vista.vim'
 Plug 'simrat39/symbols-outline.nvim'
 Plug 'tmhedberg/matchit'
 Plug 'windwp/nvim-autopairs'
 Plug 'nelstrom/vim-visual-star-search'
+Plug 'kyazdani42/nvim-tree.lua'
+" Plug 'romgrk/barbar.nvim'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'bfredl/nvim-miniyank'
 Plug 'sjl/gundo.vim'
 Plug 'vimwiki/vimwiki'
-" Plug 'gregsexton/gitv'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'mcchrish/nnn.vim'
@@ -172,20 +172,26 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 " Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'mfussenegger/nvim-jdtls'
 
-Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
 Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'rafamadriz/friendly-snippets'
 
 " Color schemes
-Plug 'folke/tokyonight.nvim'
-Plug 'projekt0n/github-nvim-theme'
-Plug 'monsonjeremy/onedark.nvim'
+" Plug 'folke/tokyonight.nvim'
+" Plug 'projekt0n/github-nvim-theme'
+" Plug 'monsonjeremy/onedark.nvim'
 Plug 'Mofiqul/vscode.nvim'
-" Plug 'arcticicestudio/nord-vim'
-Plug 'shaunsingh/nord.nvim'
+" Plug 'shaunsingh/nord.nvim'
+Plug 'EdenEast/nightfox.nvim'
 
-" Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 
 call plug#end()
@@ -211,5 +217,6 @@ call plug#end()
 
 let g:nord_contrast = v:true
 let g:nord_disable_background = v:true
-colorscheme nord
+" colorscheme nord
+colorscheme nightfox
 " hi Normal guibg=NONE ctermbg=NONE

@@ -10,8 +10,8 @@ npairs.add_rules {
     :with_cr(cond.none()),
 }
 
-require("nvim-autopairs.completion.compe").setup({
-  map_cr = true,
-  map_complete = true
-})
+-- require("nvim-autopairs.completion.compe").setup({
+--   map_cr = true,
+--   map_complete = true
+-- })
 EOF

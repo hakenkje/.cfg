@@ -4,6 +4,8 @@ vim.g.symbols_outline = {
     show_guides = false,
     auto_preview = false,
     symbol_blacklist = {"Variable", "Property", "TypeParameter"},
+    relative_width = false,
+    width = 40,
 }
 EOF
 
