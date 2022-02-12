@@ -47,11 +47,22 @@ require('formatter').setup({
         }
       end
     },
+    java = {
+      -- google-java-format
+      function()
+        return {
+          exe = "google-java-format",
+          args = {"--aosp", "-"},
+          stdin = true
+        }
+      end
+    }
   }
 })
 EOF
 
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.ts,*.jsx,*.tsx,*.json,*.py,*.rs,*.svelte FormatWrite
+  " autocmd BufWritePre *.java lua vim.lsp.buf.formatting()
+  autocmd BufWritePost *.js,*.ts,*.jsx,*.tsx,*.json,*.py,*.rs,*.svelte,*.java FormatWrite
 augroup END

@@ -37,3 +37,4 @@ nnoremap <leader>R <cmd>Telescope registers<cr>
 nnoremap <leader>d <cmd>Telescope lsp_document_diagnostics<cr>
 nnoremap <leader>D <cmd>Telescope lsp_workspace_diagnostics<cr>
 nnoremap <leader>t <cmd>Telescope lsp_workspace_symbols<cr>
+nnoremap <leader>a <cmd>Telescope lsp_code_actions<cr>

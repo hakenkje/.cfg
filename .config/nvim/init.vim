@@ -82,8 +82,10 @@ nnoremap <C-Up>   k<C-y>
 " Tabs
 nmap <leader>T :tabnew<CR>
 nmap <leader>W :tabclose<CR>
-noremap <Leader>w :clo<CR>
-noremap <Leader>q :bd<CR>
+" noremap <Leader>w :clo<CR>
+" noremap <Leader>q :bd<CR>
+noremap <C-q> :bd<CR>
+noremap <Leader>q :close<CR>
 " map <S-r> <C-w>r
 
 " Fix for unimpaired commands
@@ -120,7 +122,7 @@ nnoremap gp `[v`]
 inoremap jk <esc>
 
 " edit .vimrc/init.vim
-nmap <Leader>rc :e $MYVIMRC<CR>
+nmap <Leader>c :e $MYVIMRC<CR>
 
 " Disable Ex mode
 nnoremap Q <nop>
@@ -149,7 +151,7 @@ Plug 'tmhedberg/matchit'
 Plug 'windwp/nvim-autopairs'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'kyazdani42/nvim-tree.lua'
-" Plug 'romgrk/barbar.nvim'
+Plug 'alvarosevilla95/luatab.nvim'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'bfredl/nvim-miniyank'
