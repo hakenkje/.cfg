@@ -3,10 +3,26 @@ lua <<EOF
   local home_dir = vim.env.HOME
   local workspace_dir = home_dir .. '/workspace/' .. project_name
 
+  local jar = function (install_dir)
+    local handle = io.popen('ls ' .. install_dir .. '/plugins/org.eclipse.equinox.launcher_*.jar')
+    local result = handle:read("*a")
+    handle:close()
+    return string.gsub(result, "^%s*(.-)%s*$", "%1")
+  end
+
+  local install_dir = nil
+  local config_dir = nil
+  if home_dir == '/home/hakenkje' then
+      install_dir = '/usr/share/java/jdtls'
+      config_dir = install_dir .. '/config_linux'
+  else
+      install_dir = home_dir .. '/jdt-ls'
+      config_dir = install_dir .. '/config_mac'
+  end
+
   local config = {
     cmd = {
-
-      '/usr/bin/java',
+      'java',
 
       '-Declipse.application=org.eclipse.jdt.ls.core.id1',
       '-Dosgi.bundles.defaultStartLevel=4',
@@ -18,8 +34,8 @@ lua <<EOF
       '--add-opens', 'java.base/java.util=ALL-UNNAMED',
       '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 
-      '-jar', home_dir .. '/jdt-ls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
-      '-configuration', home_dir .. '/jdt-ls/config_mac',
+      '-jar', jar(install_dir),
+      '-configuration', config_dir,
 
       '-data', workspace_dir,
     },
@@ -55,5 +71,6 @@ if exists('b:did_ftplugin')
 endif
 
 setlocal tabstop=4 softtabstop=4 shiftwidth=4 colorcolumn=
+
 
 let b:undo_ftplugin = 'setlocal tabstop< softtabstop< shiftwidth< colorcolumn<'
