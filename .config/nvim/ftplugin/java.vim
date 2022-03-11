@@ -1,22 +1,27 @@
 lua <<EOF
-  local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-  local home_dir = vim.env.HOME
-  local workspace_dir = home_dir .. '/workspace/' .. project_name
 
-  local jar = function (install_dir)
-    local handle = io.popen('ls ' .. install_dir .. '/plugins/org.eclipse.equinox.launcher_*.jar')
+  local run = function (cmd)
+    local handle = io.popen(cmd)
     local result = handle:read("*a")
     handle:close()
     return string.gsub(result, "^%s*(.-)%s*$", "%1")
   end
 
+  local workspace_dir = vim.fn.fnamemodify(run('git rev-parse --show-toplevel'), ':p:h:h')
+
+  local jar = function (install_dir)
+    return run('ls ' .. install_dir .. '/plugins/org.eclipse.equinox.launcher_*.jar')
+  end
+
   local install_dir = nil
   local config_dir = nil
-  if home_dir == '/home/hakenkje' then
+  if vim.env.HOME == '/home/' .. vim.env.USER then
+      -- Arch linux
       install_dir = '/usr/share/java/jdtls'
       config_dir = install_dir .. '/config_linux'
-  else
-      install_dir = home_dir .. '/jdt-ls'
+  elseif vim.env.HOME == '/Users/' .. vim.env.USER then
+      -- Mac (jdt-ls installed in home dir)
+      install_dir = vim.env.HOME .. '/jdt-ls'
       config_dir = install_dir .. '/config_mac'
   end
 

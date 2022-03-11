@@ -3,7 +3,7 @@ local lspconfig = require'lspconfig'
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- Enable the following language servers
+-- Enable the following language servers, must be installed manually
 local servers = { 'pyright', 'tsserver', 'jsonls', 'cssls', 'svelte' }
 for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup {
@@ -28,17 +28,17 @@ EOF
 
 " imap <silent> <c-p> <Plug>(completion_trigger)
 
+nnoremap <silent> K           <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gD          <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gd          <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K           <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gi          <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <leader>r   <cmd>lua vim.lsp.buf.rename()<CR>
 " nnoremap <silent> <C-k>       <cmd>lua vim.lsp.buf.signature_help()<CR>
 " nnoremap <silent> <leader>wa   <cmd>lua vim.lsp.buf.add_workspace_folder()<CR>
 " nnoremap <silent> <leader>wr   <cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>
 " nnoremap <silent> <leader>wl   <cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>
 " nnoremap <silent> <leader>D    <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> <leader>r   <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> gr          <cmd>lua vim.lsp.buf.references()<CR>
+" nnoremap <silent> gr          <cmd>lua vim.lsp.buf.references()<CR>
 " nnoremap <silent> <leader>e    <cmd>lua vim.diagnostic.show_line_diagnostics()<CR>
 nnoremap <silent> [d          <cmd>lua vim.diagnostic.goto_prev()<CR>
 nnoremap <silent> ]d          <cmd>lua vim.diagnostic.goto_next()<CR>

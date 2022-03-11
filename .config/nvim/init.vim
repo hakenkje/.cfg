@@ -84,7 +84,8 @@ nmap <leader>T :tabnew<CR>
 nmap <leader>W :tabclose<CR>
 " noremap <Leader>w :clo<CR>
 " noremap <Leader>q :bd<CR>
-noremap <C-q> :bd<CR>
+" noremap <C-q> :bd<CR>
+noremap <C-q> :b#<bar>bd#<CR>
 noremap <Leader>q :close<CR>
 " map <S-r> <C-w>r
 
@@ -134,6 +135,7 @@ inoremap <MiddleMouse> <Nop>
 
 call plug#begin('~/.vim-plugs')
 
+" Obligatory tpope plugins
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
@@ -141,41 +143,37 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
-Plug 'sindrets/diffview.nvim'
 
+" Other plugins
 Plug 'b3nj5m1n/kommentary'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
-
-Plug 'simrat39/symbols-outline.nvim'
 Plug 'tmhedberg/matchit'
 Plug 'windwp/nvim-autopairs'
-Plug 'nelstrom/vim-visual-star-search'
-Plug 'kyazdani42/nvim-tree.lua'
-Plug 'alvarosevilla95/luatab.nvim'
-
 Plug 'sheerun/vim-polyglot'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'hoob3rt/lualine.nvim'
+Plug 'alvarosevilla95/luatab.nvim'
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'mcchrish/nnn.vim'
+Plug 'simrat39/symbols-outline.nvim'
 Plug 'bfredl/nvim-miniyank'
-Plug 'sjl/gundo.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'hoob3rt/lualine.nvim'
-Plug 'mcchrish/nnn.vim'
-
-" File type specific
+Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'mhartington/formatter.nvim'
 Plug 'mattn/emmet-vim', {
   \ 'for': ['javascript', 'typescript', 'typescriptreact', 'html', 'svelte'] }
-Plug 'mhartington/formatter.nvim'
 
-" LSP related
+" LSP plugins
 Plug 'tami5/sql.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-" Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'mfussenegger/nvim-jdtls'
 
+" Completion / intellisense
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -186,23 +184,11 @@ Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'rafamadriz/friendly-snippets'
 
 " Color schemes
-" Plug 'folke/tokyonight.nvim'
 " Plug 'projekt0n/github-nvim-theme'
-" Plug 'monsonjeremy/onedark.nvim'
-Plug 'Mofiqul/vscode.nvim'
-" Plug 'shaunsingh/nord.nvim'
+" Plug 'Mofiqul/vscode.nvim'
 Plug 'EdenEast/nightfox.nvim'
 
-Plug 'lukas-reineke/indent-blankline.nvim'
-
-
 call plug#end()
-
-" colorscheme hkj256
-
-" let g:tokyonight_style = "dark"
-" let g:tokyonight_transparent = 1
-" colorscheme tokyonight
 
 " lua << EOF
 " require('github-theme').setup({
@@ -210,15 +196,6 @@ call plug#end()
 "   transparent = true,
 " })
 " EOF
-
-" let g:onedark_transparent = 1
-" colorscheme onedark
-
 " let g:vscode_style = "dark"
-" colorscheme vscode
 
-let g:nord_contrast = v:true
-let g:nord_disable_background = v:true
-" colorscheme nord
 colorscheme nightfox
-" hi Normal guibg=NONE ctermbg=NONE
