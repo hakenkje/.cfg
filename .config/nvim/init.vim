@@ -41,10 +41,8 @@ set wildignore+=output,build,dist,*.egg-info,tags,node_modules,tmp,bower_compone
 
 set mouse=a  " Enable mouse scrolling
 
-au TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=150, on_visual=true}
-
 " Use a dedicated python3 venv for neovim (contains pynvim, neovim and black)
-let g:python3_host_prog = expand('~/.nvim-venv/bin/python3')
+let g:python3_host_prog = stdpath('data') .. '/venv/bin/python3'
 " let g:python_host_skip_check = 1
 " let g:python3_host_skip_check = 1
 
@@ -82,12 +80,8 @@ nnoremap <C-Up>   k<C-y>
 " Tabs
 nmap <leader>T :tabnew<CR>
 nmap <leader>W :tabclose<CR>
-" noremap <Leader>w :clo<CR>
-" noremap <Leader>q :bd<CR>
-" noremap <C-q> :bd<CR>
 noremap <C-q> :b#<bar>bd#<CR>
 noremap <Leader>q :close<CR>
-" map <S-r> <C-w>r
 
 " Fix for unimpaired commands
 nmap å [
@@ -132,8 +126,21 @@ nnoremap Q <nop>
 nnoremap <MiddleMouse> <Nop>
 inoremap <MiddleMouse> <Nop>
 
+augroup init
+  autocmd!
 
-call plug#begin('~/.vim-plugs')
+  " Automatically install missing plugins
+  autocmd VimEnter *
+    \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+    \|   PlugInstall --sync | q
+    \| endif
+
+  " Highlight yanked text
+  autocmd TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=150, on_visual=true}
+augroup END
+
+
+call plug#begin(stdpath('data') . '/plugged')
 
 " Obligatory tpope plugins
 Plug 'tpope/vim-sensible'
@@ -161,27 +168,26 @@ Plug 'vimwiki/vimwiki'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'mhartington/formatter.nvim'
-Plug 'mattn/emmet-vim', {
-  \ 'for': ['javascript', 'typescript', 'typescriptreact', 'html', 'svelte'] }
+Plug 'mattn/emmet-vim', { 'for': ['javascript', 'typescript', 'typescriptreact', 'html', 'svelte'] }
 
 " LSP plugins
 Plug 'tami5/sql.nvim'
 Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'simrat39/rust-tools.nvim'
 Plug 'mfussenegger/nvim-jdtls'
 
-" Completion / intellisense
+" Completion
+Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lua', { 'for': ['lua', 'vim'] }
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'L3MON4D3/LuaSnip'
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'rafamadriz/friendly-snippets'
 
 " Color schemes
 " Plug 'projekt0n/github-nvim-theme'
