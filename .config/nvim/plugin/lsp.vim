@@ -43,6 +43,35 @@ lsp_installer.on_server_ready(function(server)
 
   elseif server.name == "jdtls" then
 
+    opts.on_attach = function(client, bufnr)
+      require'jdtls.setup'.add_commands()
+      require'jdtls'.setup_dap({ hotcodereplace = 'auto' })
+
+      local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+      local opts = { noremap=true, silent=true }
+      buf_set_keymap("n", "<leader>dt", "<Cmd>lua require'jdtls'.test_class()<CR>", opts)
+      buf_set_keymap("n", "<leader>dn", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", opts)
+    end
+
+    -- Install plugins as described in https://github.com/mfussenegger/nvim-jdtls#debugger-via-nvim-dap
+    local jar_patterns = {
+        '~/workspace/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar',
+        '~/workspace/vscode-java-test/server/*.jar',
+    }
+
+    local bundles = {}
+    for _, jar_pattern in ipairs(jar_patterns) do
+      for _, bundle in ipairs(vim.split(vim.fn.glob(jar_pattern), '\n')) do
+        if not vim.endswith(bundle, 'com.microsoft.java.test.runner.jar') then
+          table.insert(bundles, bundle)
+        end
+      end
+    end
+
+    opts.init_options = {
+      bundles = bundles,
+    }
+
     function jdtls_setup()
       opts.cmd = server:get_default_options().cmd
       require("jdtls").start_or_attach(opts)

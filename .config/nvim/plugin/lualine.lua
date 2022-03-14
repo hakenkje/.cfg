@@ -1,4 +1,3 @@
-lua << EOF
 require('lualine').setup {
   options = {
     section_separators = '',
@@ -6,4 +5,3 @@ require('lualine').setup {
     theme = 'nightfox',
   }
 }
-EOF

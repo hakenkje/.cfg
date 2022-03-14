@@ -180,6 +180,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'simrat39/rust-tools.nvim'
 Plug 'mfussenegger/nvim-jdtls'
+Plug 'mfussenegger/nvim-dap'
 
 " Completion
 Plug 'hrsh7th/nvim-cmp'
