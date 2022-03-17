@@ -72,6 +72,27 @@ lsp_installer.on_server_ready(function(server)
       bundles = bundles,
     }
 
+    opts.settings = {
+      java = {
+        import = {
+          exclusions = {
+            "?*/**",
+          }
+        },
+        project = {
+          resourceFilters = {
+            "node_modules",
+            ".git",
+            "bazel-abelee",
+            "bazel-bin",
+            "bazel-out",
+            "bazel-rust-testlogs",
+            "bazel-testlogs",
+          }
+        }
+      }
+    }
+
     function jdtls_setup()
       opts.cmd = server:get_default_options().cmd
       require("jdtls").start_or_attach(opts)
@@ -100,7 +121,7 @@ imap <silent> <c-space> <Plug>(completion_trigger)
 
 nnoremap <silent> <leader>ll  <cmd>LspInstallInfo<cr>
 nnoremap <silent> K           <cmd>lua vim.lsp.buf.hover()<cr>
-nnoremap <silent> <C-k>       <cmd>lua vim.lsp.buf.signature_help()<cr>
+" nnoremap <silent> <C-k>       <cmd>lua vim.lsp.buf.signature_help()<cr>
 nnoremap <silent> gD          <cmd>lua vim.lsp.buf.declaration()<cr>
 nnoremap <silent> gd          <cmd>lua vim.lsp.buf.definition()<cr>
 nnoremap <silent> gi          <cmd>lua vim.lsp.buf.implementation()<cr>
