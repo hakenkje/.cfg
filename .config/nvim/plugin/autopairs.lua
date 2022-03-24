@@ -1,6 +1,11 @@
+local ok, npairs = pcall(require, 'nvim-autopairs')
+if not ok then
+  print("nvim-autopairs not installed")
+  return
+end
+
 local Rule = require('nvim-autopairs.rule')
 local cond = require('nvim-autopairs.conds')
-local npairs = require('nvim-autopairs')
 
 npairs.setup()
 

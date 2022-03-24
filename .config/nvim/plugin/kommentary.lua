@@ -1,5 +1,8 @@
-lua << EOF
-local kommentary = require('kommentary.config')
+local ok, kommentary = pcall(require, 'kommentary.config')
+if not ok then
+  print("kommentary not installed")
+  return
+end
 
 kommentary.configure_language("scss", {
     -- single_line_comment_string = "//",
@@ -14,4 +17,3 @@ kommentary.configure_language('typescriptreact', {
     require('ts_context_commentstring.internal').update_commentstring()
   end,
 })
-EOF

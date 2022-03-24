@@ -1,6 +1,28 @@
-require'nvim-treesitter.configs'.setup {
+local ok, treesitter_configs = pcall(require, 'nvim-treesitter.configs')
+if not ok then
+  print("nvim-treesitter not installed")
+  return
+end
+
+treesitter_configs.setup {
   -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
-  ensure_installed = {'python', 'rust', 'lua', 'vim', 'json', 'yaml', 'java', 'cpp', 'html', 'javascript', 'tsx', 'typescript', 'css', 'svelte'},
+  ensure_installed = {
+    'bash',
+    'cpp',
+    'css',
+    'html',
+    'java',
+    'javascript',
+    'json',
+    'lua',
+    'python',
+    'rust',
+    'svelte',
+    'tsx',
+    'typescript',
+    'vim',
+    'yaml',
+  },
   highlight = {
     enable = true
   },

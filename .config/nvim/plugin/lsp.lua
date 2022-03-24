@@ -1,22 +1,25 @@
-lua <<EOF
-local lsp_installer = require("nvim-lsp-installer")
-
+local ok, lsp_installer = pcall(require, 'nvim-lsp-installer')
+if not ok then
+  print("nvim-lsp-installer not installed")
+  return
+end
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Include the servers you want to have installed by default below
 local servers = {
-  "jdtls",
-  "rust_analyzer",
-  "pyright",
+  "bashls",
   "clangd",
-  "sumneko_lua",
-  "vimls",
-  "jsonls",
-  "yamlls",
-  "tsserver",
-  "cssmodules_ls",
   "cssls",
+  "cssmodules_ls",
+  "jdtls",
+  "jsonls",
+  "pyright",
+  "rust_analyzer",
+  "sumneko_lua",
   "svelte",
+  "tsserver",
+  "vimls",
+  "yamlls",
 }
 
 -- Install default lsp servers
@@ -34,7 +37,21 @@ lsp_installer.on_server_ready(function(server)
     capabilities = capabilities,
   }
 
-  if server.name == "rust_analyzer" then
+  if server.name == "sumneko_lua" then
+      opts.settings = {
+        Lua = {
+          diagnostics = {
+            globals = {'vim'},
+          },
+          workspace = {
+            library = vim.api.nvim_get_runtime_file("", true),
+          },
+          telemetry = { enable = false },
+        },
+      }
+      server:setup(opts)
+
+  elseif server.name == "rust_analyzer" then
     require("rust-tools").setup {
       server = vim.tbl_deep_extend("force", server:get_default_options(), opts),
     }
@@ -115,8 +132,8 @@ lsp_installer.on_server_ready(function(server)
   end
 end)
 
-EOF
 
+vim.cmd([[
 imap <silent> <c-space> <Plug>(completion_trigger)
 
 nnoremap <silent> <leader>ll  <cmd>LspInstallInfo<cr>
@@ -136,3 +153,4 @@ nnoremap <silent> <leader>lf  <cmd>lua vim.lsp.buf.formatting()<cr>
 nnoremap <silent> [d          <cmd>lua vim.diagnostic.goto_prev()<cr>
 nnoremap <silent> ]d          <cmd>lua vim.diagnostic.goto_next()<cr>
 " nnoremap <silent> <leader>q    <cmd>lua vim.lsp.diagnostic.set_loclist()<cr>
+]])

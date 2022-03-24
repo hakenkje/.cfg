@@ -1,6 +1,11 @@
-lua << EOF
-local telescope = require'telescope'
+local ok, telescope = pcall(require, 'telescope')
+if not ok then
+  print("telescope not installed")
+  return
+end
+
 local actions = require('telescope.actions')
+
 telescope.setup{
   defaults = {
     layout_strategy = "vertical",
@@ -21,11 +26,10 @@ telescope.setup{
       },
     },
   },
-  extensions = {
-  },
+  extensions = {},
 }
-EOF
 
+vim.cmd([[
 nnoremap <leader>f <cmd>Telescope find_files<cr>
 nnoremap <leader>F <cmd>Telescope oldfiles<cr>
 nnoremap <leader>g <cmd>Telescope live_grep<cr>
@@ -40,3 +44,4 @@ nnoremap <leader>lr <cmd>Telescope lsp_references<cr>
 
 nnoremap <leader>li <cmd>Telescope lsp_implementations<cr>
 nnoremap <leader>lr <cmd>Telescope lsp_references<cr>
+]])

@@ -1,4 +1,10 @@
-require"symbols-outline".setup({
+local ok, outline = pcall(require, 'symbols-outline')
+if not ok then
+  print("symbols-outline not installed")
+  return
+end
+
+outline.setup({
   highlight_hovered_item = true,
   show_guides = false,
   auto_preview = false,

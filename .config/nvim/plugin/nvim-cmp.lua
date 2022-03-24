@@ -1,4 +1,8 @@
-local cmp = require'cmp'
+local ok, cmp = pcall(require, 'cmp')
+if not ok then
+  print("nvim-cmp not installed")
+  return
+end
 
 cmp.setup({
   mapping = {

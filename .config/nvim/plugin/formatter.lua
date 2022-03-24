@@ -1,4 +1,8 @@
-lua << EOF
+local ok, formatter = pcall(require, 'formatter')
+if not ok then
+  print("formatter not installed")
+  return
+end
 
 local prettier = function()
   return {
@@ -8,7 +12,7 @@ local prettier = function()
   }
 end
 
-require('formatter').setup({
+formatter.setup({
   logging = false,
   filetype = {
     javascript = { prettier },
@@ -59,10 +63,11 @@ require('formatter').setup({
     }
   }
 })
-EOF
 
+vim.cmd([[
 augroup FormatAutogroup
   autocmd!
   " autocmd BufWritePre *.java lua vim.lsp.buf.formatting()
   autocmd BufWritePost *.js,*.ts,*.jsx,*.tsx,*.json,*.py,*.rs,*.svelte,*.java FormatWrite
 augroup END
+]])
