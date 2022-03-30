@@ -37,7 +37,7 @@ nnoremap <leader>b <cmd>Telescope buffers<cr>
 nnoremap <leader>R <cmd>Telescope registers<cr>
 
 nnoremap <leader>d <cmd>Telescope diagnostics bufnr=0<cr>
-nnoremap <leader>D <cmd>Telescope diagnostics<cr>
+nnoremap <leader>D <cmd>Telescope diagnostics severity_limit=Error<cr>
 nnoremap <leader>t <cmd>Telescope lsp_dynamic_workspace_symbols<cr>
 nnoremap <leader>a <cmd>Telescope lsp_code_actions<cr>
 nnoremap <leader>lr <cmd>Telescope lsp_references<cr>

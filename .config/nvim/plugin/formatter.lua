@@ -56,7 +56,7 @@ formatter.setup({
       function()
         return {
           exe = "google-java-format",
-          args = {"--aosp", "-"},
+          args = {"--aosp", "--skip-reflowing-long-strings", "-"},
           stdin = true
         }
       end
