@@ -159,7 +159,9 @@ function dlna-stop {
 
 # fasd {{{
 
-eval "$(fasd --init auto)"
+if [ $commands[fasd] ]; then
+    eval "$(fasd --init auto)"
+fi
 
 # }}}
 
@@ -175,7 +177,6 @@ if [ -e /usr/share/fzf ]; then
 fi
 
 # }}}
-
 
 # }}}
 
@@ -228,6 +229,10 @@ if [[ $(hostname) == "hakenkje-mbpr.local" ]]; then
             -L 8888:localhost:8888  \
             -L 10350:localhost:10350  \
             ws-lan
+    }
+
+    function ssh-tmux () {
+        ssh -t "$1" 'tmux -CC new -A -s session /usr/bin/zsh'
     }
 
     # >>> conda initialize >>>
