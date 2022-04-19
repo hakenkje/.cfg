@@ -31,25 +31,48 @@ for _, name in pairs(servers) do
   end
 end
 
+local on_attach = function(_, bufnr)
+  local opts = { buffer = bufnr }
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+  vim.keymap.set('n', 'gj', vim.lsp.buf.references, opts)
+  vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
+  vim.keymap.set('n', '<leader>lf', vim.lsp.buf.formatting, opts)
+  vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, opts)
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+end
 
 lsp_installer.on_server_ready(function(server)
   local opts = {
     capabilities = capabilities,
+    on_attach = on_attach,
   }
 
   if server.name == "sumneko_lua" then
-      opts.settings = {
-        Lua = {
-          diagnostics = {
-            globals = {'vim'},
-          },
-          workspace = {
-            library = vim.api.nvim_get_runtime_file("", true),
-          },
-          telemetry = { enable = false },
+    local runtime_path = vim.split(package.path, ';')
+    table.insert(runtime_path, 'lua/?.lua')
+    table.insert(runtime_path, 'lua/?/init.lua')
+
+    opts.settings = {
+      Lua = {
+        runtime = {
+          version = 'LuaJIT',
+          path = runtime_path,
         },
-      }
-      server:setup(opts)
+        diagnostics = {
+          globals = {'vim'},
+        },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
+        telemetry = { enable = false },
+      },
+    }
+    server:setup(opts)
 
   elseif server.name == "rust_analyzer" then
     require("rust-tools").setup {
@@ -60,14 +83,15 @@ lsp_installer.on_server_ready(function(server)
 
   elseif server.name == "jdtls" then
 
-    opts.on_attach = function(client, bufnr)
+    opts.on_attach = function(_, bufnr)
+      on_attach(nil, bufnr)
+
       require'jdtls.setup'.add_commands()
       require'jdtls'.setup_dap({ hotcodereplace = 'auto' })
 
-      local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-      local opts = { noremap=true, silent=true }
-      buf_set_keymap("n", "<leader>dt", "<Cmd>lua require'jdtls'.test_class()<CR>", opts)
-      buf_set_keymap("n", "<leader>dn", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", opts)
+      local opt = { buffer = bufnr }
+      vim.keymap.set('n', '<leader>dt', require'jdtls'.test_class, opt)
+      vim.keymap.set('n', '<leader>dn', require'jdtls'.test_nearest_method, opt)
     end
 
     -- Install plugins as described in https://github.com/mfussenegger/nvim-jdtls#debugger-via-nvim-dap
@@ -110,21 +134,19 @@ lsp_installer.on_server_ready(function(server)
       }
     }
 
-    function jdtls_setup()
+    function JdtlsSetup ()
       opts.cmd = server:get_default_options().cmd
       require("jdtls").start_or_attach(opts)
     end
 
     if vim.bo.filetype == 'java' then
-      jdtls_setup()
+      JdtlsSetup()
     end
 
-    vim.cmd([[
-      augroup jdtls_lsp
-        autocmd!
-        autocmd FileType java lua jdtls_setup()
-      augroup end
-    ]])
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "java",
+      callback = JdtlsSetup,
+    })
 
   else
     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
@@ -132,25 +154,4 @@ lsp_installer.on_server_ready(function(server)
   end
 end)
 
-
-vim.cmd([[
-imap <silent> <c-space> <Plug>(completion_trigger)
-
-nnoremap <silent> <leader>ll  <cmd>LspInstallInfo<cr>
-nnoremap <silent> K           <cmd>lua vim.lsp.buf.hover()<cr>
-" nnoremap <silent> <C-k>       <cmd>lua vim.lsp.buf.signature_help()<cr>
-nnoremap <silent> gD          <cmd>lua vim.lsp.buf.declaration()<cr>
-nnoremap <silent> gd          <cmd>lua vim.lsp.buf.definition()<cr>
-nnoremap <silent> gi          <cmd>lua vim.lsp.buf.implementation()<cr>
-nnoremap <silent> gr          <cmd>lua vim.lsp.buf.references()<cr>
-nnoremap <silent> <leader>r   <cmd>lua vim.lsp.buf.rename()<cr>
-nnoremap <silent> <leader>lf  <cmd>lua vim.lsp.buf.formatting()<cr>
-" nnoremap <silent> <leader>wa   <cmd>lua vim.lsp.buf.add_workspace_folder()<cr>
-" nnoremap <silent> <leader>wr   <cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>
-" nnoremap <silent> <leader>wl   <cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>
-" nnoremap <silent> <leader>D    <cmd>lua vim.lsp.buf.type_definition()<cr>
-" nnoremap <silent> <leader>e    <cmd>lua vim.diagnostic.show_line_diagnostics()<cr>
-nnoremap <silent> [d          <cmd>lua vim.diagnostic.goto_prev()<cr>
-nnoremap <silent> ]d          <cmd>lua vim.diagnostic.goto_next()<cr>
-" nnoremap <silent> <leader>q    <cmd>lua vim.lsp.diagnostic.set_loclist()<cr>
-]])
+vim.keymap.set('n', '<leader>ll', "<cmd>LspInstallInfo<cr>", { silent = true })

@@ -4,10 +4,8 @@ if not ok then
   return
 end
 
-kommentary.configure_language("scss", {
-    -- single_line_comment_string = "//",
-    prefer_multi_line_comments = true,
-    multi_line_comment_strings = {"/*", "*/"},
+kommentary.configure_language("default", {
+    prefer_single_line_comments = true,
 })
 
 kommentary.configure_language('typescriptreact', {

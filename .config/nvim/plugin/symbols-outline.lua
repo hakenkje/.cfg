@@ -13,6 +13,4 @@ outline.setup({
   width = 40,
 })
 
-vim.cmd([[
-  nnoremap <silent> <leader>o <cmd>SymbolsOutline<CR>
-]])
+vim.keymap.set('n', '<leader>o', "<cmd>SymbolsOutline<cr>", { silent = true })

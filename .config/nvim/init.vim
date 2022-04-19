@@ -126,6 +126,10 @@ nnoremap Q <nop>
 nnoremap <MiddleMouse> <Nop>
 inoremap <MiddleMouse> <Nop>
 
+" Use only filetype.lua
+let g:do_filetype_lua = 1
+let g:did_load_filetypes = 0
+
 augroup init
   autocmd!
 
