@@ -27,3 +27,7 @@ node_modules/
 .vim
 bin/
 pyrightconfig.json
+secrets.json
+events/
+messaging/
+.tool-versions

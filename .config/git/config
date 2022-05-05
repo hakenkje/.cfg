@@ -10,7 +10,7 @@
     reset-hard = reset --hard HEAD
     lg = log --graph --pretty=format:'%Cred%h%Creset %Cgreen%cr%Creset %Cblue%an%Creset%C(yellow)%d%Creset %s'
     gr = log --graph --simplify-by-decoration --pretty=format:'%Cgreen%ci%Creset  %d' --all
-    fixup = "!git log -n 20 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
+    fixup = "!git log -n 20 --pretty=format:'%h %s' --no-merges origin/master..HEAD | fzf | cut -c -7 | xargs -o git commit --fixup"
 
 [diff]
     color = auto
