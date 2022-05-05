@@ -29,6 +29,9 @@ DISABLE_AUTO_UPDATE="true"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
 
+source $HOME/.asdf/asdf.sh
+fpath=(${ASDF_DIR}/completions $fpath)
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(
@@ -140,15 +143,9 @@ fi;
 
 # App specific {{{
 
-# Pipenv / Pyenv / virtualenv / poetry {{{
-
-export PIPENV_SHELL_FANCY=1
-export PIPENV_DEFAULT_PYTHON_VERSION=python3
+# Python {{{
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH=$PYENV_ROOT/shims:$PATH
 
 # }}}
 
