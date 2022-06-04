@@ -36,7 +36,7 @@ formatter.setup({
       function()
         return {
           exe = "black",
-          args = {"-q", "-"},
+          args = {"-q", "-l", "100", "-"},
           stdin = true
         }
       end
