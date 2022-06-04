@@ -32,6 +32,12 @@ for _, name in pairs(servers) do
 end
 
 local on_attach = function(_, bufnr)
+  require("lsp_signature").on_attach({
+    bind = true,
+    hi_parameter = "IncSearch",
+    hint_enable = true,
+  }, bufnr)
+
   local opts = { buffer = bufnr }
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
@@ -113,8 +119,16 @@ lsp_installer.on_server_ready(function(server)
       bundles = bundles,
     }
 
+    opts.on_init = function(client)
+      if client.config.settings then
+        client.notify('workspace/didChangeConfiguration', { settings = client.config.settings })
+      end
+    end
+
     opts.settings = {
       java = {
+        signatureHelp = { enabled = true },
+        contentProvider = { preferred = 'fernflower' },
         import = {
           exclusions = {
             "?*/**",
