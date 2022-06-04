@@ -184,9 +184,13 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'simrat39/rust-tools.nvim'
 Plug 'mfussenegger/nvim-jdtls'
-Plug 'mfussenegger/nvim-dap'
 Plug 'stevearc/dressing.nvim'
 Plug 'ray-x/lsp_signature.nvim'
+
+" DAP plugins
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'theHamsta/nvim-dap-virtual-text'
 
 " Completion
 Plug 'hrsh7th/nvim-cmp'
