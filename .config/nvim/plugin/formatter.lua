@@ -4,6 +4,8 @@ if not ok then
   return
 end
 
+local util = require "formatter.util"
+
 local prettier = function()
   return {
     exe = "prettierd",
@@ -21,16 +23,9 @@ formatter.setup({
     json = { prettier },
     typescriptreact = { prettier },
     svelte = { prettier },
-    -- lua = {
-    --   -- luafmt
-    --   function()
-    --     return {
-    --       exe = "luafmt",
-    --       args = {"--indent-count", 2, "--stdin"},
-    --       stdin = true
-    --     }
-    --   end
-    -- },
+    lua = {
+      require('formatter.filetypes.lua').stylua,
+    },
     python = {
       -- black
       function()
@@ -60,6 +55,16 @@ formatter.setup({
           stdin = true
         }
       end
+    },
+    bzl = {
+      -- buildifier
+      function()
+        return {
+          exe = "buildifier",
+          args = {"-lint", "fix", "-path", util.escape_path(util.get_current_buffer_file_path())},
+          stdin = true
+        }
+      end
     }
   }
 })
@@ -68,6 +73,6 @@ vim.cmd([[
 augroup FormatAutogroup
   autocmd!
   " autocmd BufWritePre *.java lua vim.lsp.buf.formatting()
-  autocmd BufWritePost *.js,*.ts,*.jsx,*.tsx,*.json,*.py,*.rs,*.svelte,*.java FormatWrite
+  autocmd BufWritePost * FormatWrite
 augroup END
 ]])
