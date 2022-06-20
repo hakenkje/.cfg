@@ -156,7 +156,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
 
 " Other plugins
-Plug 'b3nj5m1n/kommentary'
+Plug 'numToStr/Comment.nvim'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'tmhedberg/matchit'
 Plug 'windwp/nvim-autopairs'
@@ -166,26 +166,27 @@ Plug 'hoob3rt/lualine.nvim'
 Plug 'alvarosevilla95/luatab.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'mcchrish/nnn.vim'
-Plug 'simrat39/symbols-outline.nvim'
 Plug 'bfredl/nvim-miniyank'
-Plug 'vimwiki/vimwiki'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'mhartington/formatter.nvim'
 Plug 'mattn/emmet-vim', { 'for': ['javascript', 'typescript', 'typescriptreact', 'html', 'svelte'] }
 
+" Treesitter plugins
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-context'
+Plug 'simrat39/symbols-outline.nvim'
+
 " LSP plugins
-Plug 'tami5/sql.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
-Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'simrat39/rust-tools.nvim'
 Plug 'mfussenegger/nvim-jdtls'
 Plug 'stevearc/dressing.nvim'
-Plug 'ray-x/lsp_signature.nvim'
+" Plug 'ray-x/lsp_signature.nvim'
 
 " DAP plugins
 Plug 'mfussenegger/nvim-dap'
@@ -201,18 +202,8 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 
 " Color schemes
-" Plug 'projekt0n/github-nvim-theme'
-" Plug 'Mofiqul/vscode.nvim'
 Plug 'EdenEast/nightfox.nvim'
 
 call plug#end()
-
-" lua << EOF
-" require('github-theme').setup({
-"   themeStyle = "dark",
-"   transparent = true,
-" })
-" EOF
-" let g:vscode_style = "dark"
 
 colorscheme nightfox
