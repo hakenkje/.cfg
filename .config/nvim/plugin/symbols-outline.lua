@@ -8,7 +8,7 @@ outline.setup({
   highlight_hovered_item = true,
   show_guides = false,
   auto_preview = false,
-  symbol_blacklist = {"Variable", "Property", "Field", "TypeParameter"},
+  symbol_blacklist = {"Variable", "Property", "Field", "Constant", "TypeParameter"},
   relative_width = false,
   width = 40,
 })
