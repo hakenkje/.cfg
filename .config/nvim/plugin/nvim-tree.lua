@@ -5,7 +5,7 @@ if not ok then
 end
 
 tree.setup {
-  disable_netrw       = true,
+  disable_netrw = true,
   diagnostics = {
     enable = true,
     icons = {
@@ -16,7 +16,7 @@ tree.setup {
     }
   },
   update_focused_file = {
-    enable      = true,
+    enable = true,
   },
   system_open = {
     cmd  = nil,
@@ -29,6 +29,9 @@ tree.setup {
   },
   view = {
     width = 40,
+  },
+  renderer = {
+    full_name = true,
   },
 }
 
