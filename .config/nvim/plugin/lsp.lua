@@ -32,12 +32,6 @@ for _, name in pairs(servers) do
 end
 
 local on_attach = function(_, bufnr)
-  require("lsp_signature").on_attach({
-    bind = true,
-    hi_parameter = "IncSearch",
-    hint_enable = true,
-  }, bufnr)
-
   local opts = { buffer = bufnr }
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
@@ -102,8 +96,8 @@ lsp_installer.on_server_ready(function(server)
 
     -- Install plugins as described in https://github.com/mfussenegger/nvim-jdtls#debugger-via-nvim-dap
     local jar_patterns = {
-        '~/workspace/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar',
-        '~/workspace/vscode-java-test/server/*.jar',
+        '~/workspace/abelee/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar',
+        '~/workspace/abelee/vscode-java-test/server/*.jar',
     }
 
     local bundles = {}
@@ -144,7 +138,7 @@ lsp_installer.on_server_ready(function(server)
             "bazel-rust-testlogs",
             "bazel-testlogs",
           }
-        }
+        },
       }
     }
 
