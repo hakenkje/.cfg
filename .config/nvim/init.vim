@@ -11,7 +11,7 @@ set shiftwidth=4
 set expandtab
 " set autoindent
 set nowrap
-set timeout timeoutlen=500 ttimeoutlen=5
+set timeout timeoutlen=500 ttimeoutlen=500
 set pastetoggle=<F2>
 set nojoinspaces
 set lazyredraw
@@ -78,8 +78,8 @@ nnoremap <C-Down> j<C-e>
 nnoremap <C-Up>   k<C-y>
 
 " Tabs
-nmap <leader>T :tabnew<CR>
-nmap <leader>W :tabclose<CR>
+nmap <leader>t :tabnew<CR>
+nmap <leader>w :tabclose<CR>
 noremap <C-q> :b#<bar>bd#<CR>
 noremap <Leader>q :close<CR>
 
@@ -182,7 +182,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 Plug 'simrat39/rust-tools.nvim'
 Plug 'mfussenegger/nvim-jdtls'
 Plug 'stevearc/dressing.nvim'
